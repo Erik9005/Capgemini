@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "Add Person";
+}
+
+<pre>
+
+<h1>Add Person</h1>
+<br>
+
+<label for="newPersonFirstName">FirstName:</label>
+<input type="text" id="newPersonFirstName" />
+<br>
+
+<label for="newPersonLastName">LastName:</label>
+<input type="text" id="newPersonLastName"/>
+<br>
+
+<label for="newPersonEmail">Email:</label>
+<input type="text" id="newPersonEmail"/>
+<br>
+
+<button onClick="savePerson();">Submit</button>
+<br>
+
+<label id="errorLabel"></label>
+
+</pre>
+
+@section Scripts
+{
+
+    <script>
+        function savePerson() {
+            var firstName = document.getElementById("newPersonFirstName").value;
+            var lastName = document.getElementById("newPersonLastName").value;
+            var email = document.getElementById("newPersonEmail").value;
+            var parameters = [firstName, lastName, email];
+
+            for (var i = 0; i < parameters.length; i++) {
+                if (parameters[i] === "") {
+                    var text = document.getElementById("errorLabel");
+                    text.innerHTML = "Please enter all values.";
+                    return;
+                }
+            }
+
+            $.ajax({
+                type: "GET",
+                url: "https://localhost:44346/api/save/" + encodeURIComponent(parameters)
+            }
+            );
+            window.location.reload();
+        }
+
+    </script>
+}

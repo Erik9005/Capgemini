@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "View Persons";
+}
+
+<h1>@ViewData["Title"]</h1>
+<br>
+
+<div id="persons_table"></div>
+
+@section Scripts
+{
+    <script>
+
+        getPersons(function (returnValue) {
+            var textTable = document.getElementById("persons_table");
+            textTable.innerHTML = returnValue.substring(1, returnValue.length - 1);
+        });
+
+        function getPersons(callback) {
+
+            $.ajax({
+                type: "GET",
+                url: "https://localhost:44346/api/persons",
+                dataType: "JSON",
+                success: function (response) {
+                    callback(JSON.stringify(response, null).split("},{").join("}<br>{"));
+                },
+                error: function (response) {
+                    callback("[Error retrieving data from the database.]");
+                }
+            }
+            );
+        }
+
+    </script>
+}

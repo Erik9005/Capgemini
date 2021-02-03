@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Capgemini.DatabaseRepository\Capgemini.DatabaseRepository.csproj" />
+  </ItemGroup>
+
+</Project>

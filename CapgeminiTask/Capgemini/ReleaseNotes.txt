@@ -1,0 +1,49 @@
+----------
+
+Release 1. 2021-02-03.
+
+----------
+
+Received the task and thought about the overall structure, 
+and if I wanted to change or add projects/items it would be
+easy. 
+
+----------
+
+So I created the following projects:
+
+Commons which has shared items that all other solutions 
+can access. The Commons project could also be made a Nuget package
+for easy access from other solutions. 
+
+DatabaseRepository which has the DbContext and migrations.
+
+RestApi which communicates with the Web.Ui and backend logic.
+
+Services which orchestrates and communicates with the logic.
+In this case the logic is only a few lines of code 
+(saving and getting persons from the db), but when the logic
+grows bigger it could be put in the Commons project and called
+by the service.
+
+Web.Ui which shows the view to the client and communicates with the
+RestApi project via Jquery.
+
+----------
+
+Got stuck on retrieving data from the RestApi via Jquery. Had to 
+add Cors in the Startup.
+
+----------
+
+Set the Web.Ui and RestApi as startup projects. Or host them manually
+in IIS. Would need more time for authentication, so it has no authentication
+in this release. Also set the ConnectionString in the CapgeminiConfig.yaml
+configuratin before running.
+
+----------
+
+UnitTests, logging, WindowsService, more features/logic and authentication 
+can be added in the future.
+
+----------
